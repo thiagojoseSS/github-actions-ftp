@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "80:80" # Porta padrão do Nginx
+    volumes:
+      - ./site:/usr/share/nginx/html:ro # Monta a pasta local 'site/' no diretório padrão do Nginx
+    networks:
+      - webnet
+
+  ftp:
+    image: fauria/vsftpd
+    container_name: ftp_server
+    environment:
+      FTP_USER: ${FTP_USER} # Usuário do FTP
+      FTP_PASS: ${FTP_PASSWORD} # Senha do FTP
+      PASV_ADDRESS: "127.0.0.1" # Endereço para conexões passivas
+      PASV_MIN_PORT: 21100
+      PASV_MAX_PORT: 21110
+    ports:
+      - "21:21"              # Porta padrão do FTP
+      - "21100-21110:21100-21110" # Faixa de portas para modo passivo
+    volumes:
+      - ./site:/home/vsftpd:rw # Monta a pasta local 'site/' no diretório padrão do FTP
+    networks:
+      - webnet
+
+networks:
+  webnet:
