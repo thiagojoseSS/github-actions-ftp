@@ -17,10 +17,7 @@ jobs:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /home/ec2-user/projeto/github-actions-ftp/site
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
+        server-dir: /home/vsftpd
+        
     - name: 🚢 docker update
       run: sudo docker-compose up
