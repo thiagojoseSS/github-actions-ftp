@@ -10,6 +10,7 @@ services:
       - ./site:/usr/share/nginx/html:ro # Monta a pasta local 'site/' no diretório padrão do Nginx
     networks:
       - webnet
+    restart: always
 
   ftp:
     image: fauria/vsftpd
@@ -27,6 +28,7 @@ services:
       - ./site:/home/vsftpd:rw # Monta a pasta local 'site/' no diretório padrão do FTP
     networks:
       - webnet
+    restart: always
 
 networks:
   webnet:
