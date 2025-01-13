@@ -17,8 +17,8 @@ services:
     image: fauria/vsftpd
     container_name: ftp_server
     environment:
-      FTP_USER: ${FTP_USER} # Usuário do FTP
-      FTP_PASS: ${FTP_PASSWORD} # Senha do FTP
+      FTP_USER: ${{ secrets.FTP_USER }} # Usuário do FTP
+      FTP_PASS: ${{ secrets.FTP_PASSWORD }} # Senha do FTP
       PASV_ADDRESS: "127.0.0.1" # Endereço para conexões passivas
       PASV_MIN_PORT: 21100
       PASV_MAX_PORT: 21110
