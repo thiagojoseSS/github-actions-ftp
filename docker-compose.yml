@@ -26,7 +26,7 @@ services:
       - "21:21"              # Porta padrão do FTP
       - "21100-21110:21100-21110" # Faixa de portas para modo passivo
     volumes:
-      - /home/ubuntu/github-actions-ftp:/home/vsftpd:rw # Monta a pasta local 'site/' no diretório padrão do FTP
+      - /home/ubuntu/github-actions-ftp/ftp:/home/vsftpd:rw # Monta a pasta local 'site/' no diretório padrão do FTP
     networks:
       - webnet
     restart: always
